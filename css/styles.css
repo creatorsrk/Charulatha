@@ -635,6 +635,17 @@ img {
     color: white;
     font-size: 1.5rem;
     transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-link svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    transition: all 0.3s ease;
 }
 
 .social-link:hover {
@@ -671,4 +682,80 @@ img {
     100% {
         transform: translateX(-50%);
     }
+}
+
+/* Press Page Styles */
+.press-section {
+    background-color: #faf8f5;
+}
+
+.press-article {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.press-article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(139, 69, 19, 0.15) !important;
+}
+
+.read-more:hover {
+    text-decoration: underline !important;
+}
+
+.media-item {
+    transition: transform 0.3s ease;
+}
+
+.media-item:hover {
+    transform: translateY(-5px);
+}
+
+.resource-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(139, 69, 19, 0.15) !important;
+}
+
+/* Active navigation link */
+.nav-links a.active {
+    color: #8b4513 !important;
+    font-weight: 600;
+}
+
+/* Header Social Media Icons */
+.header-social-icons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.header-social-link {
+    color: #f4e4c1;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.header-social-link svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    transition: all 0.3s ease;
+}
+
+.header-social-link:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: translateY(-2px) scale(1.1);
+    color: #ffd700;
 }
