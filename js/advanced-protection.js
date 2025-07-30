@@ -133,9 +133,13 @@ function convertImageToProtectedCanvas(img) {
 function addWatermarkToCanvas(ctx, width, height) {
     ctx.save();
     
+    // Get current theme primary color or fallback to brown
+    const computedStyle = getComputedStyle(document.documentElement);
+    const primaryColor = computedStyle.getPropertyValue('--primary-color').trim() || '#8b4513';
+    
     // Semi-transparent watermark
     ctx.globalAlpha = 0.15;
-    ctx.fillStyle = '#8b4513';
+    ctx.fillStyle = primaryColor;
     ctx.font = `${Math.max(width/20, 16)}px Dancing Script, cursive`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -156,7 +160,8 @@ function addWatermarkToCanvas(ctx, width, height) {
     
     // Add border watermark
     ctx.globalAlpha = 0.3;
-    ctx.strokeStyle = '#d4af37';
+    const accentColor = computedStyle.getPropertyValue('--accent-color').trim() || '#d4af37';
+    ctx.strokeStyle = accentColor;
     ctx.lineWidth = Math.max(width/200, 2);
     ctx.strokeRect(0, 0, width, height);
     
@@ -168,6 +173,12 @@ function showAdvancedProtectionMessage() {
     if (document.getElementById('advanced-protection-message')) {
         return;
     }
+
+    // Get current theme colors
+    const computedStyle = getComputedStyle(document.documentElement);
+    const primaryColor = computedStyle.getPropertyValue('--primary-color').trim() || '#8b4513';
+    const secondaryColor = computedStyle.getPropertyValue('--secondary-color').trim() || '#d4af37';
+    const accentColor = computedStyle.getPropertyValue('--accent-color').trim() || '#f4e4c1';
 
     const messageContainer = document.createElement('div');
     messageContainer.id = 'advanced-protection-message';
@@ -185,7 +196,7 @@ function showAdvancedProtectionMessage() {
             justify-content: center;
         ">
             <div style="
-                background: linear-gradient(135deg, #8b4513, #d4af37);
+                background: linear-gradient(135deg, ${primaryColor}, ${secondaryColor});
                 color: white;
                 padding: 40px;
                 border-radius: 20px;
@@ -193,21 +204,21 @@ function showAdvancedProtectionMessage() {
                 text-align: center;
                 font-family: 'Dancing Script', cursive;
                 max-width: 500px;
-                border: 3px solid #f4e4c1;
+                border: 3px solid ${accentColor};
                 animation: protectionPulse 2s ease-in-out infinite;
             ">
                 <div style="font-size: 4rem; margin-bottom: 20px;">🎵</div>
-                <h2 style="margin: 0 0 20px 0; color: #f4e4c1; font-size: 2rem;">Content Protected</h2>
+                <h2 style="margin: 0 0 20px 0; color: ${accentColor}; font-size: 2rem;">Content Protected</h2>
                 <p style="margin: 0 0 15px 0; line-height: 1.6; font-size: 1.2rem;">
                     This artistic content belongs to <strong>Charulatha</strong><br>
                     and is protected by copyright law.
                 </p>
-                <p style="margin: 0 0 25px 0; color: #f4e4c1; font-size: 1rem;">
+                <p style="margin: 0 0 25px 0; color: ${accentColor}; font-size: 1rem;">
                     Please respect the artist's intellectual property rights.
                 </p>
                 <button onclick="this.parentElement.parentElement.parentElement.remove()" style="
-                    background: #f4e4c1;
-                    color: #8b4513;
+                    background: ${accentColor};
+                    color: ${primaryColor};
                     border: none;
                     padding: 12px 30px;
                     border-radius: 25px;
@@ -247,8 +258,12 @@ function showAdvancedProtectionMessage() {
     const originalWarn = console.warn;
     const originalError = console.error;
     
+    // Get current theme colors
+    const computedStyle = getComputedStyle(document.documentElement);
+    const accentColor = computedStyle.getPropertyValue('--accent-color').trim() || '#d4af37';
+    
     console.log = function(...args) {
-        originalLog.apply(console, ['%c🎵 Charulatha Website - Content Protected 🎵', 'color: #d4af37; font-weight: bold;']);
+        originalLog.apply(console, [`%c🎵 Charulatha Website - Content Protected 🎵`, `color: ${accentColor}; font-weight: bold;`]);
         return originalLog.apply(console, args);
     };
 
@@ -265,7 +280,7 @@ function showAdvancedProtectionMessage() {
         '\n%cUnauthorized downloading, copying, or distribution is prohibited by law.',
         'color: red; font-size: 12px; font-weight: bold;',
         '\n%c🎵 Please support the artist by respecting these rights 🎵',
-        'color: #d4af37; font-size: 14px; font-weight: bold;'
+        `color: ${accentColor}; font-size: 14px; font-weight: bold;`
     ];
     
     console.log(protectionMessage[0], protectionMessage[1]);

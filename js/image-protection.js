@@ -234,6 +234,11 @@ function showProtectionMessage() {
         return;
     }
 
+    // Get current theme colors
+    const computedStyle = getComputedStyle(document.documentElement);
+    const primaryColor = computedStyle.getPropertyValue('--primary-color').trim() || '#8b4513';
+    const accentColor = computedStyle.getPropertyValue('--accent-color').trim() || '#d4af37';
+
     const message = document.createElement('div');
     message.id = 'protection-message';
     message.innerHTML = `
@@ -242,7 +247,7 @@ function showProtectionMessage() {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(139, 69, 19, 0.95);
+            background: ${primaryColor}f2;
             color: white;
             padding: 20px 30px;
             border-radius: 10px;
@@ -251,16 +256,16 @@ function showProtectionMessage() {
             text-align: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             max-width: 400px;
-            border: 2px solid #d4af37;
+            border: 2px solid ${accentColor};
         ">
-            <h3 style="margin: 0 0 10px 0; color: #d4af37;">🎵 Content Protected</h3>
+            <h3 style="margin: 0 0 10px 0; color: ${accentColor};">🎵 Content Protected</h3>
             <p style="margin: 0; line-height: 1.5;">
                 This content is protected by copyright.<br>
                 Charulatha's artistic work is preserved for viewing only.
             </p>
             <button onclick="this.parentElement.parentElement.remove()" style="
-                background: #d4af37;
-                color: #8b4513;
+                background: ${accentColor};
+                color: ${primaryColor};
                 border: none;
                 padding: 8px 20px;
                 border-radius: 5px;
@@ -285,11 +290,16 @@ function showProtectionMessage() {
 // Show developer tools warning
 function showDevToolsWarning() {
     console.clear();
+    
+    // Get current theme colors
+    const computedStyle = getComputedStyle(document.documentElement);
+    const accentColor = computedStyle.getPropertyValue('--accent-color').trim() || '#d4af37';
+    
     console.log('%c⚠️ DEVELOPER TOOLS DETECTED ⚠️', 'color: red; font-size: 24px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);');
     console.log('%cThis website\'s content is protected by copyright law.', 'color: red; font-size: 16px; font-weight: bold;');
     console.log('%cCharulatha\'s artistic work and images are intellectual property.', 'color: orange; font-size: 14px;');
     console.log('%cUnauthorized downloading or copying is prohibited.', 'color: orange; font-size: 14px;');
-    console.log('%c🎵 Please respect the artist\'s rights 🎵', 'color: #d4af37; font-size: 16px; font-weight: bold;');
+    console.log(`%c🎵 Please respect the artist\'s rights 🎵`, `color: ${accentColor}; font-size: 16px; font-weight: bold;`);
 }
 
 // Additional CSS injection for protection
@@ -351,6 +361,10 @@ window.addEventListener('focus', function() {
 });
 
 // Console message for legitimate users
-console.log('%c🎵 Welcome to Charulatha\'s Website! 🎵', 'color: #d4af37; font-size: 18px; font-weight: bold;');
-console.log('%cThis website showcases the beautiful art of Veena music.', 'color: #8b4513; font-size: 14px;');
-console.log('%cAll content is protected by copyright. Please respect the artist\'s work!', 'color: #8b4513; font-size: 12px;');
+const computedStyle = getComputedStyle(document.documentElement);
+const accentColor = computedStyle.getPropertyValue('--accent-color').trim() || '#d4af37';
+const primaryColor = computedStyle.getPropertyValue('--primary-color').trim() || '#8b4513';
+
+console.log(`%c🎵 Welcome to Charulatha\'s Website! 🎵`, `color: ${accentColor}; font-size: 18px; font-weight: bold;`);
+console.log(`%cThis website showcases the beautiful art of Veena music.`, `color: ${primaryColor}; font-size: 14px;`);
+console.log(`%cAll content is protected by copyright. Please respect the artist\'s work!`, `color: ${primaryColor}; font-size: 12px;`);
