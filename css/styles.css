@@ -1,6 +1,115 @@
 /* Import Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Pacifico&family=Allura&family=Alex+Brush&family=Pinyon+Script&family=Satisfy&family=Tangerine:wght@400;700&display=swap');
 
+/* ========================================
+   THEME SELECTOR - DEVELOPER ONLY
+   ======================================== 
+   Instructions: 
+   1. Comment out the ACTIVE theme below
+   2. Uncomment your desired theme 
+   3. Save the file to apply changes
+   
+   Available Themes:
+   - Classic Brown & Gold (Default)
+   - Royal Purple & Gold
+   - Ocean Teal & Coral  
+   - Navy & Rose
+   - Forest Green & Gold
+   - Burgundy & Champagne
+*/
+
+/* ===== THEME 1: CLASSIC BROWN & GOLD (DEFAULT) - CURRENTLY ACTIVE ===== */
+:root {
+    --primary-color: #8b4513;           /* Main brand color */
+    --secondary-color: #cd853f;         /* Secondary accent */
+    --accent-color: #daa520;            /* Tertiary accent */
+    --highlight-color: #ffd700;         /* Highlights & buttons */
+    --light-bg: #f4e4c1;               /* Light backgrounds */
+    --text-color: #2c3e50;             /* Body text */
+    --light-text: #fff8dc;             /* Light text areas */
+    --hover-gold: #ffed4e;             /* Button hover */
+    --nav-bg-opacity: rgba(139, 69, 19, 0.95);  /* Navigation background */
+}
+
+/* ===== ALTERNATIVE THEMES - TO ACTIVATE: Replace the :root section above with one of these =====
+
+THEME 2: ROYAL PURPLE & GOLD
+Copy this and replace the :root section above:
+
+:root {
+    --primary-color: #6B46C1;
+    --secondary-color: #9333EA;
+    --accent-color: #F59E0B;
+    --highlight-color: #FCD34D;
+    --light-bg: #F3E8FF;
+    --text-color: #1F2937;
+    --light-text: #FAF5FF;
+    --hover-gold: #FDE68A;
+    --nav-bg-opacity: rgba(107, 70, 193, 0.95);
+}
+
+THEME 3: OCEAN TEAL & CORAL
+Copy this and replace the :root section above:
+
+:root {
+    --primary-color: #0F766E;
+    --secondary-color: #14B8A6;
+    --accent-color: #F97316;
+    --highlight-color: #FB923C;
+    --light-bg: #F0FDFA;
+    --text-color: #1F2937;
+    --light-text: #ECFDF5;
+    --hover-gold: #FED7AA;
+    --nav-bg-opacity: rgba(15, 118, 110, 0.95);
+}
+
+THEME 4: NAVY & ROSE
+Copy this and replace the :root section above:
+
+:root {
+    --primary-color: #1E3A8A;
+    --secondary-color: #3B82F6;
+    --accent-color: #E11D48;
+    --highlight-color: #F472B6;
+    --light-bg: #F8FAFC;
+    --text-color: #1F2937;
+    --light-text: #F1F5F9;
+    --hover-gold: #FBBF24;
+    --nav-bg-opacity: rgba(30, 58, 138, 0.95);
+}
+
+THEME 5: FOREST GREEN & GOLD
+Copy this and replace the :root section above:
+
+:root {
+    --primary-color: #166534;
+    --secondary-color: #22C55E;
+    --accent-color: #D97706;
+    --highlight-color: #FCD34D;
+    --light-bg: #F0FDF4;
+    --text-color: #1F2937;
+    --light-text: #ECFDF5;
+    --hover-gold: #FDE68A;
+    --nav-bg-opacity: rgba(22, 101, 52, 0.95);
+}
+
+THEME 6: BURGUNDY & CHAMPAGNE
+Copy this and replace the :root section above:
+
+:root {
+    --primary-color: #7C2D12;
+    --secondary-color: #DC2626;
+    --accent-color: #D97706;
+    --highlight-color: #FCD34D;
+    --light-bg: #FEF2F2;
+    --text-color: #1F2937;
+    --light-text: #FDF2F8;
+    --hover-gold: #FDE68A;
+    --nav-bg-opacity: rgba(124, 45, 18, 0.95);
+}
+
+===== END OF THEMES ===== */
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -11,7 +120,7 @@
 body {
     font-family: 'Dancing Script', 'Brush Script MT', 'Lucida Handwriting', cursive;
     line-height: 1.6;
-    color: #2c3e50;
+    color: var(--text-color);
     overflow-x: hidden;
     font-size: 1.1rem;
 }
@@ -86,11 +195,26 @@ img {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(139, 69, 19, 0.95);
+    background: var(--nav-bg-opacity);
     backdrop-filter: blur(10px);
     z-index: 1000;
     transition: all 0.3s ease;
     padding: 0.5rem 0;
+}
+
+.navbar.scrolled {
+    background: var(--primary-color);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+/* Force navbar to always use theme colors */
+.navbar[style*="background"] {
+    background: var(--nav-bg-opacity) !important;
+}
+
+.navbar.scrolled[style*="background"] {
+    background: var(--primary-color) !important;
 }
 
 .nav-container {
@@ -105,7 +229,7 @@ img {
 .logo {
     font-size: 2.5rem;
     font-weight: 400;
-    color: #f4e4c1;
+    color: var(--light-bg);
     text-decoration: none;
     letter-spacing: 2px;
     font-family: 'Allura', 'Alex Brush', cursive;
@@ -119,7 +243,7 @@ img {
 }
 
 .nav-links a {
-    color: #f4e4c1;
+    color: var(--light-bg);
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -127,7 +251,7 @@ img {
 }
 
 .nav-links a:hover {
-    color: #ffd700;
+    color: var(--highlight-color);
     transform: translateY(-2px);
 }
 
@@ -138,7 +262,7 @@ img {
     left: 0;
     width: 0;
     height: 2px;
-    background: #ffd700;
+    background: var(--highlight-color);
     transition: width 0.3s ease;
 }
 
@@ -155,7 +279,7 @@ img {
 .mobile-menu-toggle span {
     width: 25px;
     height: 3px;
-    background: #f4e4c1;
+    background: var(--light-bg);
     margin: 3px 0;
     transition: 0.3s;
 }
@@ -163,7 +287,7 @@ img {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(135deg, #8b4513 0%, #cd853f 50%, #daa520 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -239,8 +363,8 @@ img {
 }
 
 .btn-primary {
-    background: #ffd700;
-    color: #8b4513;
+    background: var(--highlight-color);
+    color: var(--primary-color);
 }
 
 .btn-secondary {
@@ -255,12 +379,12 @@ img {
 }
 
 .btn-primary:hover {
-    background: #ffed4e;
+    background: var(--hover-gold);
 }
 
 .btn-secondary:hover {
     background: white;
-    color: #8b4513;
+    color: var(--primary-color);
 }
 
 /* Floating elements */
@@ -289,7 +413,7 @@ img {
     text-align: center;
     font-size: 4.5rem;
     margin-bottom: 3rem;
-    color: #8b4513;
+    color: var(--primary-color);
     position: relative;
     font-family: 'Allura', 'Alex Brush', cursive;
     letter-spacing: 1px;
@@ -304,13 +428,13 @@ img {
     transform: translateX(-50%);
     width: 100px;
     height: 3px;
-    background: linear-gradient(90deg, #8b4513, #daa520);
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
 }
 
 /* About Section */
 .about {
     padding: 8rem 2rem;
-    background: linear-gradient(45deg, #f4e4c1 0%, #fff8dc 100%);
+    background: linear-gradient(45deg, var(--light-bg) 0%, var(--light-text) 100%);
 }
 
 .about-content {
@@ -332,7 +456,7 @@ img {
 .veena-placeholder {
     width: 300px;
     height: 400px;
-    background: linear-gradient(45deg, #8b4513, #cd853f);
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -415,7 +539,7 @@ img {
 .photo-placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, #8b4513, #cd853f, #daa520);
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -444,7 +568,7 @@ img {
 }
 
 .service-card {
-    background: linear-gradient(135deg, #f4e4c1 0%, #fff8dc 100%);
+    background: linear-gradient(135deg, var(--light-bg) 0%, var(--light-text) 100%);
     padding: 3rem 2rem;
     border-radius: 20px;
     text-align: center;
@@ -480,13 +604,13 @@ img {
 .service-icon {
     font-size: 3rem;
     margin-bottom: 1.5rem;
-    color: #8b4513;
+    color: var(--primary-color);
 }
 
 .service-card h3 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    color: #8b4513;
+    color: var(--primary-color);
     font-family: 'Dancing Script', cursive;
     letter-spacing: 1px;
     font-weight: 600;
@@ -495,7 +619,7 @@ img {
 /* Gallery Section */
 .gallery {
     padding: 8rem 2rem;
-    background: linear-gradient(135deg, #8b4513 0%, #cd853f 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
 }
 
@@ -508,13 +632,13 @@ img {
 
 .gallery-item {
     aspect-ratio: 1;
-    background: linear-gradient(45deg, #daa520, #ffd700);
+    background: linear-gradient(45deg, var(--accent-color), var(--highlight-color));
     border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    color: #8b4513;
+    color: var(--primary-color);
     font-weight: bold;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -528,7 +652,7 @@ img {
 /* Contact Section */
 .contact {
     padding: 8rem 2rem;
-    background: #f4e4c1;
+    background: var(--light-bg);
 }
 
 .contact-content {
@@ -560,7 +684,7 @@ img {
 .contact-icon {
     font-size: 1.5rem;
     margin-right: 1rem;
-    color: #8b4513;
+    color: var(--primary-color);
 }
 
 .quick-booking {
@@ -572,7 +696,7 @@ img {
 }
 
 .quick-booking h3 {
-    color: #8b4513;
+    color: var(--primary-color);
     font-family: 'Dancing Script', cursive;
     font-size: 1.8rem;
     margin-bottom: 1rem;
@@ -597,14 +721,14 @@ img {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: bold;
-    color: #8b4513;
+    color: var(--primary-color);
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
     padding: 1rem;
-    border: 2px solid #f4e4c1;
+    border: 2px solid var(--light-bg);
     border-radius: 10px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
@@ -613,12 +737,12 @@ img {
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #8b4513;
+    border-color: var(--primary-color);
 }
 
 /* Footer */
 .footer {
-    background: #8b4513;
+    background: var(--primary-color);
     color: white;
     text-align: center;
     padding: 3rem 2rem;
@@ -649,7 +773,7 @@ img {
 }
 
 .social-link:hover {
-    color: #ffd700;
+    color: var(--highlight-color);
     transform: translateY(-3px);
 }
 
@@ -721,7 +845,7 @@ img {
 
 /* Active navigation link */
 .nav-links a.active {
-    color: #8b4513 !important;
+    color: var(--primary-color) !important;
     font-weight: 600;
 }
 
@@ -733,7 +857,7 @@ img {
 }
 
 .header-social-link {
-    color: #f4e4c1;
+    color: var(--light-bg);
     text-decoration: none;
     font-size: 1.2rem;
     padding: 0.5rem;
@@ -757,5 +881,5 @@ img {
 .header-social-link:hover {
     background: rgba(255, 215, 0, 0.2);
     transform: translateY(-2px) scale(1.1);
-    color: #ffd700;
+    color: var(--highlight-color);
 }
