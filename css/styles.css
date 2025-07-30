@@ -16,20 +16,30 @@
    - Navy & Rose
    - Forest Green & Gold
    - Burgundy & Champagne
+   - Minimalist Black & White
 */
 
 /* ===== THEME 1: CLASSIC BROWN & GOLD (DEFAULT) - CURRENTLY ACTIVE ===== */
+
 :root {
-    --primary-color: #8b4513;           /* Main brand color */
-    --secondary-color: #cd853f;         /* Secondary accent */
-    --accent-color: #daa520;            /* Tertiary accent */
-    --highlight-color: #ffd700;         /* Highlights & buttons */
-    --light-bg: #f4e4c1;               /* Light backgrounds */
-    --text-color: #2c3e50;             /* Body text */
-    --light-text: #fff8dc;             /* Light text areas */
-    --hover-gold: #ffed4e;             /* Button hover */
-    --nav-bg-opacity: rgba(139, 69, 19, 0.95);  /* Navigation background */
+    --primary-color: #000000;
+    --secondary-color: #333333;
+    --accent-color: #666666;
+    --highlight-color: #ffffff;
+    --light-bg: #f8f9fa;
+    --text-color: #212529;
+    --light-text: #ffffff;
+    --hover-gold: #e9ecef;
+    --nav-bg-opacity: rgba(0, 0, 0, 0.95);
+
+    
+    /* Font Families - Classic Elegant */
+    --body-font: 'Dancing Script', 'Brush Script MT', 'Lucida Handwriting', cursive;
+    --heading-font: 'Allura', 'Alex Brush', cursive;
+    --accent-font: 'Pinyon Script', 'Satisfy', cursive;
+    --modern-font: 'Dancing Script', cursive;
 }
+
 
 /* ===== ALTERNATIVE THEMES - TO ACTIVATE: Replace the :root section above with one of these =====
 
@@ -46,6 +56,12 @@ Copy this and replace the :root section above:
     --light-text: #FAF5FF;
     --hover-gold: #FDE68A;
     --nav-bg-opacity: rgba(107, 70, 193, 0.95);
+    
+    Font Families - Modern Royal:
+    --body-font: 'Great Vibes', 'Georgia', serif;
+    --heading-font: 'Tangerine', 'Times New Roman', serif;
+    --accent-font: 'Satisfy', 'Dancing Script', cursive;
+    --modern-font: 'Pacifico', 'Arial', sans-serif;
 }
 
 THEME 3: OCEAN TEAL & CORAL
@@ -61,6 +77,12 @@ Copy this and replace the :root section above:
     --light-text: #ECFDF5;
     --hover-gold: #FED7AA;
     --nav-bg-opacity: rgba(15, 118, 110, 0.95);
+    
+    Font Families - Ocean Breeze:
+    --body-font: 'Satisfy', 'Lucida Handwriting', cursive;
+    --heading-font: 'Alex Brush', 'Great Vibes', cursive;
+    --accent-font: 'Dancing Script', 'Pinyon Script', cursive;
+    --modern-font: 'Allura', 'Helvetica', sans-serif;
 }
 
 THEME 4: NAVY & ROSE
@@ -76,6 +98,12 @@ Copy this and replace the :root section above:
     --light-text: #F1F5F9;
     --hover-gold: #FBBF24;
     --nav-bg-opacity: rgba(30, 58, 138, 0.95);
+    
+    Font Families - Navy Elegance:
+    --body-font: 'Pinyon Script', 'Book Antiqua', serif;
+    --heading-font: 'Dancing Script', 'Allura', cursive;
+    --accent-font: 'Alex Brush', 'Satisfy', cursive;
+    --modern-font: 'Tangerine', 'Trebuchet MS', sans-serif;
 }
 
 THEME 5: FOREST GREEN & GOLD
@@ -91,6 +119,12 @@ Copy this and replace the :root section above:
     --light-text: #ECFDF5;
     --hover-gold: #FDE68A;
     --nav-bg-opacity: rgba(22, 101, 52, 0.95);
+    
+    Font Families - Nature Inspired:
+    --body-font: 'Alex Brush', 'Dancing Script', cursive;
+    --heading-font: 'Pacifico', 'Verdana', sans-serif;
+    --accent-font: 'Allura', 'Pinyon Script', cursive;
+    --modern-font: 'Satisfy', 'Arial', sans-serif;
 }
 
 THEME 6: BURGUNDY & CHAMPAGNE
@@ -106,6 +140,33 @@ Copy this and replace the :root section above:
     --light-text: #FDF2F8;
     --hover-gold: #FDE68A;
     --nav-bg-opacity: rgba(124, 45, 18, 0.95);
+    
+    Font Families - Vintage Luxury:
+    --body-font: 'Tangerine', 'Times New Roman', serif;
+    --heading-font: 'Satisfy', 'Allura', cursive;
+    --accent-font: 'Pacifico', 'Alex Brush', cursive;
+    --modern-font: 'Pinyon Script', 'Calibri', sans-serif;
+}
+
+THEME 7: MINIMALIST BLACK & WHITE
+Copy this and replace the :root section above:
+
+:root {
+    --primary-color: #000000;
+    --secondary-color: #333333;
+    --accent-color: #666666;
+    --highlight-color: #ffffff;
+    --light-bg: #f8f9fa;
+    --text-color: #212529;
+    --light-text: #ffffff;
+    --hover-gold: #e9ecef;
+    --nav-bg-opacity: rgba(0, 0, 0, 0.95);
+    
+    Font Families - Clean Minimalist:
+    --body-font: 'Georgia', 'Times New Roman', serif;
+    --heading-font: 'Helvetica Neue', 'Arial', sans-serif;
+    --accent-font: 'Georgia', 'Times New Roman', serif;
+    --modern-font: 'Arial', 'Helvetica', sans-serif;
 }
 
 ===== END OF THEMES ===== */
@@ -118,7 +179,7 @@ Copy this and replace the :root section above:
 }
 
 body {
-    font-family: 'Dancing Script', 'Brush Script MT', 'Lucida Handwriting', cursive;
+    font-family: var(--body-font);
     line-height: 1.6;
     color: var(--text-color);
     overflow-x: hidden;
@@ -202,21 +263,6 @@ img {
     padding: 0.5rem 0;
 }
 
-.navbar.scrolled {
-    background: var(--primary-color);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-}
-
-/* Force navbar to always use theme colors */
-.navbar[style*="background"] {
-    background: var(--nav-bg-opacity) !important;
-}
-
-.navbar.scrolled[style*="background"] {
-    background: var(--primary-color) !important;
-}
-
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -232,7 +278,7 @@ img {
     color: var(--light-bg);
     text-decoration: none;
     letter-spacing: 2px;
-    font-family: 'Allura', 'Alex Brush', cursive;
+    font-family: var(--heading-font);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
@@ -319,7 +365,7 @@ img {
     margin-bottom: 1rem;
     text-shadow: 4px 4px 8px rgba(0,0,0,0.5);
     animation: fadeInUp 1s ease;
-    font-family: 'Allura', 'Alex Brush', cursive;
+    font-family: var(--heading-font);
     letter-spacing: 3px;
     font-weight: 400;
 }
@@ -329,7 +375,7 @@ img {
     margin-bottom: 2rem;
     opacity: 0.9;
     animation: fadeInUp 1s ease 0.3s both;
-    font-family: 'Pinyon Script', 'Satisfy', cursive;
+    font-family: var(--accent-font);
     font-style: normal;
     font-weight: 400;
     letter-spacing: 1px;
@@ -415,7 +461,7 @@ img {
     margin-bottom: 3rem;
     color: var(--primary-color);
     position: relative;
-    font-family: 'Allura', 'Alex Brush', cursive;
+    font-family: var(--heading-font);
     letter-spacing: 1px;
     font-weight: 400;
 }
@@ -611,7 +657,7 @@ img {
     font-size: 2rem;
     margin-bottom: 1rem;
     color: var(--primary-color);
-    font-family: 'Dancing Script', cursive;
+    font-family: var(--modern-font);
     letter-spacing: 1px;
     font-weight: 600;
 }
@@ -697,7 +743,7 @@ img {
 
 .quick-booking h3 {
     color: var(--primary-color);
-    font-family: 'Dancing Script', cursive;
+    font-family: var(--modern-font);
     font-size: 1.8rem;
     margin-bottom: 1rem;
 }
@@ -845,7 +891,7 @@ img {
 
 /* Active navigation link */
 .nav-links a.active {
-    color: var(--primary-color) !important;
+    color: #8b4513 !important;
     font-weight: 600;
 }
 
@@ -857,7 +903,7 @@ img {
 }
 
 .header-social-link {
-    color: var(--light-bg);
+    color: #f4e4c1;
     text-decoration: none;
     font-size: 1.2rem;
     padding: 0.5rem;
@@ -881,5 +927,5 @@ img {
 .header-social-link:hover {
     background: rgba(255, 215, 0, 0.2);
     transform: translateY(-2px) scale(1.1);
-    color: var(--highlight-color);
+    color: #ffd700;
 }
