@@ -10,23 +10,17 @@ async function loadPhotos() {
     const photoContainer = document.getElementById('photoScroll');
     if (!photoContainer) return;
     
-    // List of photo filenames (replace these with actual filenames from your assets folder)
+    // List of photo filenames (updated to use actual images from assets/photos folder)
     const photoFilenames = [
-        'charulatha-concert1.jpg',
-        'charulatha-veena-practice.jpg',
-        'charulatha-teaching.jpg',
-        'charulatha-festival.jpg',
-        'charulatha-recording.jpg',
-        'charulatha-concert2.jpg',
-        'charulatha-masterclass.jpg',
-        'charulatha-cultural-event.jpg',
-        'charulatha-performance.jpg',
-        'charulatha-studio.jpg',
-        'charulatha-backstage.jpg',
-        'charulatha-award.jpg',
-        'charulatha-rehearsal.jpg',
-        'charulatha-sunset-concert.jpg',
-        'charulatha-students.jpg'
+        'IMG_0127.PNG',
+        'IMG_6475.JPG',
+        'IMG_7725.JPG',
+        'IMG_7827.PNG',
+        'IMG_8054.JPG',
+        'IMG_8249.JPG',
+        'IMG_8931.PNG',
+        'IMG_9399.JPG',
+        'IMG_9487.PNG'
     ];
 
     // Photo descriptions
@@ -71,7 +65,16 @@ function createPhotoItem(filename, description) {
     
     // Create a protected image structure
     photoItem.innerHTML = `
-        <div class="image-container" style="position: relative; overflow: hidden;">
+        <div class="image-container" style="position: relative; overflow: hidden; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--light-bg);">
+            <div class="loading-spinner" style="
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: var(--primary-color);
+                font-size: 2rem;
+                z-index: 1;
+            ">📸</div>
             <img src="assets/photos/${filename}" 
                  alt="${description}" 
                  loading="lazy"
@@ -79,7 +82,20 @@ function createPhotoItem(filename, description) {
                  oncontextmenu="return false;"
                  onselectstart="return false;"
                  ondragstart="return false;"
-                 style="user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; pointer-events: none;"
+                 style="
+                    width: 100%; 
+                    height: 100%; 
+                    object-fit: cover; 
+                    object-position: center;
+                    user-select: none; 
+                    -webkit-user-select: none; 
+                    -moz-user-select: none; 
+                    -ms-user-select: none; 
+                    pointer-events: none;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                 "
+                 onload="this.style.opacity='1'; this.parentElement.querySelector('.loading-spinner').style.display='none';"
                  onerror="handleImageError(this);">
             <div class="image-overlay" style="
                 position: absolute;
@@ -116,11 +132,31 @@ function createPhotoItem(filename, description) {
 
 // Handle image loading errors
 function handleImageError(img) {
+    const container = img.parentElement;
+    const spinner = container.querySelector('.loading-spinner');
+    
+    // Hide the broken image and spinner
     img.style.display = 'none';
-    const placeholder = img.nextElementSibling;
-    if (placeholder && placeholder.classList.contains('photo-placeholder')) {
-        placeholder.style.display = 'flex';
-    }
+    if (spinner) spinner.style.display = 'none';
+    
+    // Show a styled error message
+    container.innerHTML = `
+        <div style="
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--light-bg);
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px;
+        ">
+            <div style="font-size: 3rem; margin-bottom: 10px; opacity: 0.5;">📸</div>
+            <div style="font-size: 0.9rem; opacity: 0.7;">Image not found</div>
+        </div>
+    `;
 }
 
 // Initialize lazy loading for better performance
