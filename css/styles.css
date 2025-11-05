@@ -499,23 +499,24 @@ img {
     text-align: center;
 }
 
-.veena-placeholder {
+.profile-image {
     width: 300px;
     height: 400px;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    object-fit: cover;
     border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.2rem;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     transform: rotate(-5deg);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: auto;
 }
 
-.veena-placeholder:hover {
+.profile-image:hover {
     transform: rotate(0deg) scale(1.05);
+    filter: brightness(1.1);
 }
 
 /* Photo Gallery Section */
